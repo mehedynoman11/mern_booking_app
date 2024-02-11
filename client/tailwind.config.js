@@ -5,7 +5,27 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        bgPrimary: "#119DA9",
+        bgSoft: "#2ABB93",
+        bgYellow: '#E5D351',
+        bgRed: '#BA2D40',
+        bgLavender: '#E6E6FA',
+        bgCoral: '#FF7F50',
+        bgGold: '#FFD700',
+        bgWhiteSoft: '#F3F8FF',
+        bgDark: '#030637',
+        bgSky: '#836FFF',
+        bgSkyLite: '#98E4FF',
+        bgDarkNeon: '#071952'
+      },
+      
+    },
+    // screens: {
+    //   'xs': {'max': '450px'},
+    //   'xs-min': {'min': '450px'}, // You can adjust the value as needed
+    // }
   },
   plugins: [],
 }
