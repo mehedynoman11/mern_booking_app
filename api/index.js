@@ -16,6 +16,7 @@ mongoose.connect(process.env.MONGO_URI, {
 });
 
 const app = express();
+app.use(express.json());
 
 app.listen(3000, () => {
     console.log('Server Running on port 3000 at ' +  new Date().toLocaleString());
