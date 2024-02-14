@@ -22,8 +22,8 @@ export default function SignIn() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(signInStart());
     try {
+      dispatch(signInStart());
       const res = await fetch("/api/auth/signin", {
         method: "POST",
         headers: {
@@ -47,7 +47,7 @@ export default function SignIn() {
   // console.log(formData);
   return (
     <div className="p-3 max-w-lg mx-auto">
-      <h1 className="text-3xl text-center font-bold my-7">
+      <h1 className="text-3xl text-center font-extrabold my-7 ">
         Sign in with an account
       </h1>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
