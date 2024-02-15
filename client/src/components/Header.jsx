@@ -37,8 +37,19 @@ export default function Header() {
               About
             </Link>
 
-            <Link to={"/sign-in"} className="text-bgDark hover:underline">
-              {currentUser ? <img className="rounded-full h-7 w-7 object-cover" src={currentUser.avatar} alt="" /> : "Sign in"}
+            <Link
+              to={currentUser ? "/profile" : "/sign-in"}
+              className="text-bgDark hover:underline"
+            >
+              {currentUser ? (
+                <img
+                  className="rounded-full h-7 w-7 object-cover"
+                  src={currentUser.avatar}
+                  alt=""
+                />
+              ) : (
+                "Sign in"
+              )}
             </Link>
           </ul>
           <form className="bg-slate-100 p-3 rounded-lg flex items-center ml-3">
