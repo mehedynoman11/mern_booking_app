@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {getStorage, ref, getDownloadURL, uploadBytesResumable} from 'firebase/storage'
 import { app } from '../firebase';
-
+import { updateUserStart, updateUserSuccess, updateUserFailure } from '../redux/user/userSlice';
 
 
 export default function Profile() {
@@ -13,6 +13,8 @@ export default function Profile() {
   const [filePerc, setFilePerc] = useState(0);
   const [fileUploadError, setFileUploadError] = useState(false);
   const [formData, setFormData] = useState({});
+  const dispatch = useDispatch();
+
   // console.log(file);
   // console.log(filePerc);
   // console.log(formData);
@@ -44,11 +46,36 @@ export default function Profile() {
   );
 };
 
+const handleChange = (e) => {
+  setFormData({...formData, [e.target.id]: e.target.value})
+}
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  try {
+    dispatch(updateUserStart());
+    const res = await fetch(`api/user/update/${currentUser._id}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    });
+    const data = await res.json()
+    if (data.success === false) {
+      dispatch(updateUserFailure(data.message));
+      return;
+    }
+    dispatch(updateUserSuccess(data));
+  } catch (error) {
+    dispatch(updateUserFailure(error.message))
+  }
+}
   return (
 <div className="mt-5 flex flex-col items-center mx-2 min-h-screen">
   <h1 className="text-3xl font-bold text-center">Profile</h1>
   <div className="max-w-2xl bg-white shadow-lg rounded-lg p-6 my-6">
-    <form className="flex-col sm:flex sm:flex-row gap-4 flex items-center">
+    <form onSubmit={handleSubmit} className="flex-col sm:flex sm:flex-row gap-4 flex items-center">
       <div className="flex-shrink-0">
         <input onChange={(e) => setFile(e.target.files[0])} type="file" ref={fileRef} hidden accept='image/*'/>
         <img
@@ -79,18 +106,23 @@ export default function Profile() {
           type="text"
           placeholder="Username"
           id="username"
+          defaultValue={currentUser.username}
+          onChange={handleChange}
           className="border p-3 rounded-lg w-full mb-4 bg-green-100"
         />
         <input
           type="email"
           placeholder="Email"
           id="email"
+          defaultValue={currentUser.email}
+          onChange={handleChange}
           className="border p-3 rounded-lg w-full mb-4 bg-green-100"
         />
         <input
           type="password"
           placeholder="Password"
           id="password"
+          onChange={handleChange}
           className="border p-3 rounded-lg w-full mb-4 bg-green-100"
         />
         <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-lg">
