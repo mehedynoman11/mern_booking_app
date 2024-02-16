@@ -7,7 +7,7 @@ import { updateUserStart, updateUserSuccess, updateUserFailure } from '../redux/
 
 export default function Profile() {
 
-  const { currentUser } = useSelector((state) => state.user);
+  const { currentUser, loading, error } = useSelector((state) => state.user);
   const fileRef = useRef(null);
   const [file, setFile] = useState(undefined);
   const [filePerc, setFilePerc] = useState(0);
@@ -125,8 +125,8 @@ const handleSubmit = async (e) => {
           onChange={handleChange}
           className="border p-3 rounded-lg w-full mb-4 bg-green-100"
         />
-        <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-lg">
-          Update
+        <button disabled={loading} type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-lg">
+          {loading ? 'Loading...' : 'Update'}
         </button>
       </div>
     </form>
@@ -134,7 +134,9 @@ const handleSubmit = async (e) => {
       <span className='text-white font-semibold cursor-pointer bg-rose-500 p-2 rounded-xl'>Delete Account</span>
       <span className='text-white font-semibold cursor-pointer bg-rose-500 p-2 rounded-xl'>Sign out</span>
     </div>
+    
   </div>
+  <p className='text-bgRed font-semibold p-2 bg-red-200 rounded'>{error ? error : ''}</p>
 </div>
 
 
