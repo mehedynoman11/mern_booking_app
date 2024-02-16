@@ -14,6 +14,7 @@ export default function Profile() {
   const [fileUploadError, setFileUploadError] = useState(false);
   const [formData, setFormData] = useState({});
   const dispatch = useDispatch();
+  const [updateSuccess, setUpdateSuccess] = useState(false);
 
   // console.log(file);
   // console.log(filePerc);
@@ -67,6 +68,7 @@ const handleSubmit = async (e) => {
       return;
     }
     dispatch(updateUserSuccess(data));
+    setUpdateSuccess(true)
   } catch (error) {
     dispatch(updateUserFailure(error.message))
   }
@@ -136,7 +138,9 @@ const handleSubmit = async (e) => {
     </div>
     
   </div>
-  <p className='text-bgRed font-semibold p-2 bg-red-200 rounded'>{error ? error : ''}</p>
+  <p className='text-bgRed font-bold p-2 '>{error ? error : ''}</p>
+  <p className='text-teal-800 font-bold p-2 '>{updateSuccess ? 'user updated successfully' : ''}</p>
+
 </div>
 
 
