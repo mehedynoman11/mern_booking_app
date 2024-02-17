@@ -18,6 +18,7 @@ import {
   signOutUserSuccess,
   signOutUserFailure,
 } from "../redux/user/userSlice";
+import { Link } from "react-router-dom";
 
 export default function Profile() {
   const { currentUser, loading, error } = useSelector((state) => state.user);
@@ -184,6 +185,7 @@ export default function Profile() {
               onChange={handleChange}
               className="border p-3 rounded-lg w-full mb-4 bg-green-100"
             />
+            <div className="flex gap-3">
             <button
               disabled={loading}
               type="submit"
@@ -191,6 +193,15 @@ export default function Profile() {
             >
               {loading ? "Loading..." : "Update"}
             </button>
+            <button
+            type="submit"
+            className="bg-blue-500 text-white px-4 py-2 rounded-lg"
+            >
+            <Link className="" to={'/create-listing'}>
+              Create Listing
+            </Link>
+            </button>
+            </div>
           </div>
         </form>
         <div className="flex justify-between mt-5">
