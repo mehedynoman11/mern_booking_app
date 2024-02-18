@@ -29,6 +29,8 @@ export default function Profile() {
   const [formData, setFormData] = useState({});
   const dispatch = useDispatch();
   const [updateSuccess, setUpdateSuccess] = useState(false);
+  const [showListingError, setShowListingError] = useState(false);
+  const [userListing, setUserListing] = useState([]);
 
   // console.log(file);
   // console.log(filePerc);
@@ -108,26 +110,53 @@ export default function Profile() {
 
   const handleSignOut = async () => {
     try {
-      dispatch(signOutUserStart())
-      const res = await fetch('/api/auth/signout');
+      dispatch(signOutUserStart());
+      const res = await fetch("/api/auth/signout");
       const data = await res.json();
       if (data.success === false) {
-        dispatch(signOutUserFailure(data.message))
+        dispatch(signOutUserFailure(data.message));
         return;
       }
       dispatch(signOutUserSuccess(data));
     } catch (error) {
-      dispatch(signOutUserFailure(error.message))
+      dispatch(signOutUserFailure(error.message));
     }
-  }
+  };
+
+  useEffect(() => {
+    // Fetch listings when component mounts
+    handleShowListing();
+  }, []);
+
+  const handleShowListing = async () => {
+    try {
+      setShowListingError(false);
+      const res = await fetch(`/api/user/listing/${currentUser._id}`);
+      const data = await res.json();
+      if (data.success === false) {
+        setShowListingError(true);
+        return;
+      }
+      setUserListing(data);
+    } catch (error) {
+      setShowListingError(true);
+    }
+  };
   return (
     <div className="mt-5 flex flex-col items-center mx-2 min-h-screen">
-      <h1 className="text-3xl font-bold text-center">Profile</h1>
+      
       <div className="max-w-2xl bg-white shadow-lg rounded-lg p-6 my-6">
+        <div className="my-4">
+        <h1 className="text-3xl font-medium underline underline-offset-4 
+        font-[poppins] uppercase text-center">
+          Profile
+        </h1>
+        </div>
         <form
           onSubmit={handleSubmit}
           className="flex-col sm:flex sm:flex-row gap-4 flex items-center"
         >
+          
           <div className="flex-shrink-0">
             <input
               onChange={(e) => setFile(e.target.files[0])}
@@ -186,21 +215,21 @@ export default function Profile() {
               className="border p-3 rounded-lg w-full mb-4 bg-green-100"
             />
             <div className="flex gap-3">
-            <button
-              disabled={loading}
-              type="submit"
-              className="bg-blue-500 text-white px-4 py-2 rounded-lg"
-            >
-              {loading ? "Loading..." : "Update"}
-            </button>
-            <button
-            type="submit"
-            className="bg-blue-500 text-white px-4 py-2 rounded-lg"
-            >
-            <Link className="" to={'/create-listing'}>
-              Create Listing
-            </Link>
-            </button>
+              <button
+                disabled={loading}
+                type="submit"
+                className="bg-blue-500 text-white px-4 py-2 rounded-lg"
+              >
+                {loading ? "Loading..." : "Update"}
+              </button>
+              <button
+                type="submit"
+                className="bg-blue-500 text-white px-4 py-2 rounded-lg"
+              >
+                <Link className="" to={"/create-listing"}>
+                  Create Listing
+                </Link>
+              </button>
             </div>
           </div>
         </form>
@@ -211,9 +240,10 @@ export default function Profile() {
           >
             Delete Account
           </span>
-          <span  
-          onClick={handleSignOut}
-          className="text-white font-semibold cursor-pointer bg-rose-500 p-2 rounded-xl">
+          <span
+            onClick={handleSignOut}
+            className="text-white font-semibold cursor-pointer bg-rose-500 p-2 rounded-xl"
+          >
             Sign out
           </span>
         </div>
@@ -227,6 +257,28 @@ export default function Profile() {
             User updated successfully
           </p>
         )}
+        <div className="p-5 bg-white rounded-xl shadow-xl font-[cursive] leading-tight uppercase mb-5">
+        <button onClick={handleShowListing} className="text-xl font-medium underline underline-offset-4 font-[poppins] uppercase text-center">
+          Show Listings
+        </button>
+        <p className="text-bgRed font-bold p-2 ">
+          {showListingError ? "Error showing listings" : ""}
+        </p>
+        {userListing &&
+          userListing.length > 0 &&
+          userListing.map((listing) => (
+            <div className="flex items-center gap-3 sm:text-xl text-sm font-semibold" key={listing._id}>
+              <Link to={`/listing/${listing._id}`}>
+                <img src={listing.imageUrls[0]} 
+                alt="Listing"
+                className="w-16 h-16 object-contain" />
+              </Link>
+              <Link to={`/listing/${listing._id}`}>
+                <p className="leading-5">{listing.name}</p>
+              </Link>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

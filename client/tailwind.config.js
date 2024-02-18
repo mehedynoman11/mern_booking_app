@@ -20,6 +20,9 @@ export default {
         bgSkyLite: '#98E4FF',
         bgDarkNeon: '#071952'
       },
+      fontFamily: {
+        "poppins": ["Poppins", "sans-serif"],
+      },
       
     },
     // screens: {
