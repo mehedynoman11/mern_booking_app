@@ -52,21 +52,21 @@ export default function SignUp() {
         <input
           type="text"
           placeholder="username"
-          className="border p-3 rounded-lg"
+          className="border-2 border-slate-600 p-3 rounded-lg"
           id="username"
           onChange={handleChange}
         />
         <input
           type="email"
           placeholder="email"
-          className="border p-3 rounded-lg"
+          className="border-2 border-slate-600 p-3 rounded-lg"
           id="email"
           onChange={handleChange}
         />
         <input
           type="password"
           placeholder="password"
-          className="border p-3 rounded-lg"
+          className="border-2 border-slate-600 p-3 rounded-lg"
           id="password"
           onChange={handleChange}
         />
@@ -79,7 +79,7 @@ export default function SignUp() {
         </button>
         <OAuth />
       </form>
-      <div className="flex gap-2 mt-4">
+      <div className="flex gap-2 mt-4 font-medium">
         <p>Have an account?</p>
         <Link className="text-[blue]" to={"/sign-in"}>
           Sign in

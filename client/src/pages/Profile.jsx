@@ -160,8 +160,8 @@ export default function Profile() {
   }
   return (
     <div className="mt-5 flex flex-col items-center mx-2 min-h-screen">
-      
-      <div className="max-w-2xl bg-white shadow-lg rounded-lg p-6 my-6">
+      {/* bg-[#b9b9ff] */}
+      <div className="max-w-2xl bg-white border-2 border-slate-600 shadow-lg rounded-lg p-6 my-6">
         <div className="my-4">
         <h1 className="text-3xl font-medium underline underline-offset-4 
         font-[poppins] uppercase text-center">
@@ -213,7 +213,7 @@ export default function Profile() {
               id="username"
               defaultValue={currentUser.username}
               onChange={handleChange}
-              className="border p-3 rounded-lg w-full mb-4 bg-green-100"
+              className="border-2 border-slate-600 p-3 rounded-lg w-full mb-4"
             />
             <input
               type="email"
@@ -221,14 +221,14 @@ export default function Profile() {
               id="email"
               defaultValue={currentUser.email}
               onChange={handleChange}
-              className="border p-3 rounded-lg w-full mb-4 bg-green-100"
+              className="border-2 border-slate-600 p-3 rounded-lg w-full mb-4"
             />
             <input
               type="password"
               placeholder="Password"
               id="password"
               onChange={handleChange}
-              className="border p-3 rounded-lg w-full mb-4 bg-green-100"
+              className="border-2 border-slate-600 p-3 rounded-lg w-full mb-4 "
             />
             <div className="flex gap-3">
               <button
@@ -273,7 +273,7 @@ export default function Profile() {
             User updated successfully
           </p>
         )}
-        <div className="p-5 bg-white rounded-xl shadow-xl font-[cursive] leading-tight uppercase mb-5">
+        <div className="p-5 bg-white border-2 border-slate-600  rounded-xl shadow-xl font-[cursive] leading-tight uppercase mb-5">
         <button onClick={handleShowListing} className="text-xl font-medium underline underline-offset-4 font-[poppins] uppercase text-center">
           Show Listings
         </button>
@@ -283,7 +283,8 @@ export default function Profile() {
         {userListing &&
           userListing.length > 0 &&
           userListing.map((listing) => (
-            <div className="flex items-center justify-start gap-7 sm:text-xl text-xs font-semibold border border-gray-300 shadow p-2 rounded" key={listing._id}>
+            <div className="flex items-center justify-start gap-7 sm:text-xl 
+            text-xs font-semibold border border-slate-600 shadow p-2 rounded" key={listing._id}>
               <div className="flex items-center gap-4 flex-1">
               <Link to={`/listing/${listing._id}`}>
                 <img src={listing.imageUrls[0]} 

@@ -190,12 +190,12 @@ export default function CreateListing() {
         Create a Listing
       </h1>
       <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4">
-        <div className="flex flex-col gap-4 flex-1">
+        <div className="flex flex-col gap-4 flex-1 ">
           <input
             type="text"
             placeholder="name"
             id="name"
-            className="border p-3 rounded-lg"
+            className="border-2 border-slate-600 p-3 rounded-lg "
             // maxLength="62"
             // minLength="10"
             required
@@ -206,7 +206,7 @@ export default function CreateListing() {
             type="text"
             placeholder="description"
             id="description"
-            className="border p-3 rounded-lg"
+            className="border-2 border-slate-600 p-3 rounded-lg "
             required
             onChange={handleChange}
             value={formData.description}
@@ -215,7 +215,7 @@ export default function CreateListing() {
             type="text"
             placeholder="Address"
             id="address"
-            className="border p-3 rounded-lg"
+            className="border-2 border-slate-600 p-3 rounded-lg "
             // maxLength="62"
             // minLength="10"
             required
@@ -237,13 +237,13 @@ export default function CreateListing() {
               <span>Sell</span>
             </div>
             <div
-              className="flex gap-2
+              className="flex gap-2 
             "
             >
               <input
                 type="checkbox"
                 id="rent"
-                className="w-5"
+                className="w-5 "
                 onChange={handleChange}
                 checked={formData.type === "rent"}
               />

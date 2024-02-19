@@ -54,14 +54,14 @@ export default function SignIn() {
         <input
           type="email"
           placeholder="email"
-          className="border p-3 rounded-lg"
+          className="border-2 border-slate-600 p-3 rounded-lg"
           id="email"
           onChange={handleChange}
         />
         <input
           type="password"
           placeholder="password"
-          className="border p-3 rounded-lg"
+          className="border-2 border-slate-600 p-3 rounded-lg"
           id="password"
           onChange={handleChange}
         />
@@ -74,7 +74,7 @@ export default function SignIn() {
         </button>
         <OAuth />
       </form>
-      <div className="flex gap-2 mt-4">
+      <div className="flex gap-2 mt-4 font-medium">
         <p>Don't have an account?</p>
         <Link className="text-[blue]" to={"/sign-up"}>
           Sign Up

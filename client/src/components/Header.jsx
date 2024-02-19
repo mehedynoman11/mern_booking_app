@@ -116,12 +116,12 @@ export default function Header() {
 
   return (
     <header>
-      <div className="flex justify-between items-center mx-auto p-4 bg-green-200">
+      <div className="flex justify-between items-center mx-auto p-4 bg-[#7fa6ea]">
         <div className="flex items-center">
           
           <Link to={'/'}>
-          <h1 className="font-bold text-2xl sm:text-xl flex flex-wrap">
-            Arena-State
+          <h1 className="font-bold text-[#2b3188] text-2xl font-poppins sm:text-xl flex flex-wrap">
+            Arena-<span className="text-[#0f1232]">State</span>
           </h1>
           </Link>
         </div>
@@ -192,7 +192,7 @@ export default function Header() {
       </div>
 
       {isMenuOpen && (
-        <ul className="sm:hidden bg-green-200 p-3">
+        <ul className="sm:hidden bg-white p-3 text-xl font-bold flex flex-col justify-center items-center">
           <Link to={"/"} className="text-bgDark block py-2 hover:underline">
             Home
           </Link>

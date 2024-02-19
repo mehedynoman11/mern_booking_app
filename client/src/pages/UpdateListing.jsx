@@ -180,7 +180,7 @@ export default function CreateListing() {
             type="text"
             placeholder="name"
             id="name"
-            className="border p-3 rounded-lg"
+            className="border-2 border-slate-600 p-3 rounded-lg"
             // maxLength="62"
             // minLength="10"
             required
@@ -191,7 +191,7 @@ export default function CreateListing() {
             type="text"
             placeholder="description"
             id="description"
-            className="border p-3 rounded-lg"
+            className="border-2 border-slate-600 p-3 rounded-lg"
             required
             onChange={handleChange}
             value={formData.description}
@@ -200,7 +200,7 @@ export default function CreateListing() {
             type="text"
             placeholder="Address"
             id="address"
-            className="border p-3 rounded-lg"
+            className="border-2 border-slate-600 p-3 rounded-lg"
             // maxLength="62"
             // minLength="10"
             required

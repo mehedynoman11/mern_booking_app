@@ -40,7 +40,7 @@ export default function OAuth() {
     type='button'
       className="bg-white p-3 px-2 rounded-lg
      font-bold flex items-center justify-center gap-2
-     hover:bg-blue-100"
+     hover:border-2 hover:border-slate-600"
     >
       <FcGoogle size={30} />
       <span className="text-xl">Continue with google</span>

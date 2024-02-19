@@ -5,7 +5,8 @@
 @tailwind utilities;
 
 body{
-    background: #74E291;
+    /* background: #f4fff7; */
+    background: #d8e7ff;
 }
 
 /* .m1a{
