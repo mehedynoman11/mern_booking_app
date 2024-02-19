@@ -267,7 +267,8 @@ export default function Profile() {
         {userListing &&
           userListing.length > 0 &&
           userListing.map((listing) => (
-            <div className="flex items-center gap-3 sm:text-xl text-sm font-semibold" key={listing._id}>
+            <div className="flex items-center justify-start gap-7 sm:text-xl text-xs font-semibold border border-gray-300 shadow p-2 rounded" key={listing._id}>
+              <div className="flex items-center gap-4 flex-1">
               <Link to={`/listing/${listing._id}`}>
                 <img src={listing.imageUrls[0]} 
                 alt="Listing"
@@ -276,9 +277,25 @@ export default function Profile() {
               <Link to={`/listing/${listing._id}`}>
                 <p className="leading-5">{listing.name}</p>
               </Link>
+              
+              </div>       
+              <div className="flex flex-col gap-3">
+                <button className="text-red-600 font-bold rounded-xl">
+                  Delete
+                </button>
+                <button className="text-blue-600 font-bold rounded-xl">
+                  Edit
+                </button>
+                {/* s<div className="border-2 border-black w-full" /> */}
+              </div>
+              
+
             </div>
+            
           ))}
+          
         </div>
+        
       </div>
     </div>
   );
