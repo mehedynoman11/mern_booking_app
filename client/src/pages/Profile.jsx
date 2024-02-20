@@ -273,8 +273,9 @@ export default function Profile() {
             User updated successfully
           </p>
         )}
-        <div className="p-5 bg-white border-2 border-slate-600  rounded-xl shadow-xl font-[cursive] leading-tight uppercase mb-5">
-        <button onClick={handleShowListing} className="text-xl font-medium underline underline-offset-4 font-[poppins] uppercase text-center">
+        <div className="p-5 bg-white border-2 border-slate-600  rounded-xl shadow-xl font-robotos leading-tight mb-5">
+        <button onClick={handleShowListing} className="text-xl font-medium underline underline-offset-4 
+        font-[poppins] uppercase text-center">
           Show Listings
         </button>
         <p className="text-bgRed font-bold p-2 ">
